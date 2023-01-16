@@ -7,8 +7,14 @@ interface ButtonProps {
 
 export class Button extends Component <ButtonProps> {
   render() {
-    return <button className="bg-gray-600 border border-purple-500" 
-    onClick={this.props.onClick}>{this.props.label}</button>
+    return (
+      <button
+        className="bg-gray-600 border border-purple-500"
+        onClick={this.props.onClick}
+      >
+        {this.props.label}
+      </button>
+    );
   }
 }
 
