@@ -10,12 +10,17 @@ export default class DetailCard extends Component<DetailCardProps> {
     return (
       <div className="card glass">
         <figure>
-          <img src={this.props.image} alt={this.props.title} />
+          <img
+            className="mx-auto"
+            src={`https://image.tmdb.org/t/p/w500${this.props.image}`}
+            alt={this.props.title}
+          />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">{this.props.title}</h2>
-          {/* <p>How to park your car at your garage?</p> */}
-          <div className="card-actions justify-center">
+        <div className="card-body items-center justify-between">
+          <h2 className="card-title items-center text-center">
+            {this.props.title}
+          </h2>
+          <div className="card-actions w-full justify-center">
             <button className="btn btn-primary w-full">Add To Favorite</button>
           </div>
         </div>
