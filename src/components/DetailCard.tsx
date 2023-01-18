@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Button from "./Button";
+
 interface DetailCardProps {
   title: string;
   image: string;
@@ -8,7 +10,7 @@ interface DetailCardProps {
 export default class DetailCard extends Component<DetailCardProps> {
   render() {
     return (
-      <div className="card glass">
+      <div className="card glass bg-slate-400">
         <figure>
           <img
             className="mx-auto"
@@ -21,7 +23,7 @@ export default class DetailCard extends Component<DetailCardProps> {
             {this.props.title}
           </h2>
           <div className="card-actions w-full justify-center">
-            <button className="btn btn-primary w-full">Add To Favorite</button>
+            <Button label="Add To Favorite" />
           </div>
         </div>
       </div>
