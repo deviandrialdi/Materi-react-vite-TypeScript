@@ -5,19 +5,15 @@ import Layout from "../components/Layout";
 import DetailCard from "../components/DetailCard";
 import { LoadingAnimation } from "../components/Loading";
 import Carousel from "../components/Carousel";
-import ScrollToTop from "../components/ScroollTop";
-
-interface DatasType {
-  id: number;
-  title: string;
-  poster_path: string;
-}
+import { MovieType } from "../utils/types/movie";
 
 interface PropsType {}
 
 interface StateType {
   loading: boolean;
-  datas: DatasType[];
+  datas: MovieType[];
+  page: number;
+  totalPage: number;
 }
 
 export default class index extends Component<PropsType, StateType> {
@@ -26,31 +22,58 @@ export default class index extends Component<PropsType, StateType> {
     this.state = {
       datas: [],
       loading: true,
+      page: 1,
+      totalPage: 1,
     };
   }
   //side effect
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData(1);
   }
 
-  fetchData() {
+  fetchData(page: number) {
     setTimeout(() => {
       axios
         .get(
           `now_playing?api_key=${
             import.meta.env.VITE_API_KEY
-          }&language=en-US&page=1`
+          }&language=en-US&page=1${page}`
         )
         .then((data) => {
-          const { results } = data.data;
-          this.setState({ datas: results });
+          const { results, total_pages } = data.data;
+          this.setState({ datas: results, totalPage: total_pages });
         })
         .catch((error) => {
           alert(error.tostring());
         })
         .finally(() => this.setState({ loading: false }));
-    }, 3000);
+    }, 1000);
+  }
+
+  nextpage() {
+    const newPage = this.state.page + 1;
+    this.setState({ page: newPage });
+    this.fetchData(newPage);
+  }
+
+  prevPage() {
+    const newPage = this.state.page - 1;
+    this.setState({ page: newPage });
+    this.fetchData(newPage);
+  }
+
+  handleFavorite(data: MovieType) {
+    const checkExist = localStorage.getItem("FavMovie");
+    if (checkExist) {
+      let parsefav: MovieType[] = JSON.parse(checkExist);
+      parsefav.push(data);
+      localStorage.setItem("FavMovie", JSON.stringify(parsefav));
+      alert("Movie added to favorite");
+    } else {
+      localStorage.setItem("FavMovie", JSON.stringify([data]));
+      alert("Succes added Movie to Favorite");
+    }
   }
 
   render() {
@@ -72,25 +95,42 @@ export default class index extends Component<PropsType, StateType> {
                 <p className="text-white italic tracking-widest font-bold break-words text-2xl text-center">
                   {data.title}
                 </p>
-                <ScrollToTop />
               </div>
             )}
           />
         )}
-        <div
-          className={`${
-            this.state.loading ? "flex justify-center" : "grid"
-          } grid-cols-4 gap-3 p-3`}
-        >
+        <div className="grid grid-cols-4 gap-3 p-3">
           {this.state.loading
-            ? [0].map((data) => <LoadingAnimation />)
+            ? [...Array(20).keys()].map((data) => (
+                <LoadingAnimation key={data} />
+              ))
             : this.state.datas.map((data) => (
                 <DetailCard
                   key={data.id}
                   title={data.title}
                   image={data.poster_path}
+                  labelButton="Add To Favorite"
+                  id={data.id}
+                  onClickFav={() => this.handleFavorite(data)}
                 />
               ))}
+        </div>
+        <div className="btn-group w-full justify-center">
+          <button
+            className="btn bg-blue-800"
+            onClick={() => this.prevPage()}
+            disabled={this.state.page === 1}
+          >
+            «
+          </button>
+          <button className="btn">{this.state.page}</button>
+          <button
+            className="btn bg-indigo-900"
+            onClick={() => this.nextpage()}
+            disabled={this.state.page === this.state.totalPage}
+          >
+            »
+          </button>
         </div>
       </Layout>
     );

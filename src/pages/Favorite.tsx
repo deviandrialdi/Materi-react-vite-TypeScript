@@ -3,18 +3,13 @@ import React, { Component } from "react";
 import Layout from "../components/Layout";
 import DetailCard from "../components/DetailCard";
 import { LoadingAnimation } from "../components/Loading";
-
-interface DatasType {
-  id: number;
-  title: string;
-  poster_path: string;
-}
+import { MovieType } from "../utils/types/movie";
 
 interface PropsType {}
 
 interface StateType {
   loading: boolean;
-  datas: DatasType[];
+  datas: MovieType[];
 }
 
 export default class index extends Component<PropsType, StateType> {
@@ -30,23 +25,37 @@ export default class index extends Component<PropsType, StateType> {
     this.fetchData();
   }
 
-  fetchData() {}
+  fetchData() {
+    const getFavorite = localStorage.getItem("FavMovie");
+    if (getFavorite) {
+      this.setState({ datas: JSON.parse(getFavorite) });
+    }
+    this.setState({ loading: false });
+  }
+
+  removeFavorite(data: MovieType) {
+    let dupeDatas: MovieType[] = this.state.datas.slice();
+    const filterData = dupeDatas.filter((item) => item.id !== data.id);
+    localStorage.setItem("FavMovie", JSON.stringify(filterData));
+    alert(`Delete ${data.title} from favorite list`);
+  }
 
   render() {
     return (
       <Layout>
-        <div
-          className={`${
-            this.state.loading ? "flex justify-center" : "grid"
-          } grid-cols-4 gap-3`}
-        >
+        <div className="grid grid-cols-4 gap-3 p-3">
           {this.state.loading
-            ? [0].map((data) => <LoadingAnimation />)
+            ? [...Array(20).keys()].map((data) => (
+                <LoadingAnimation key={data} />
+              ))
             : this.state.datas.map((data) => (
                 <DetailCard
                   key={data.id}
                   title={data.title}
                   image={data.poster_path}
+                  id={data.id}
+                  labelButton="Remove From Favorite"
+                  onClickFav={() => this.removeFavorite(data)}
                 />
               ))}
         </div>

@@ -12,6 +12,6 @@ axios.defaults.baseURL = "https://api.themoviedb.org/3/movie/";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <DetailMovie />
+    <App />
   </React.StrictMode>
 );
