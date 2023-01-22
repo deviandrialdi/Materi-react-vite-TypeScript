@@ -1,12 +1,10 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import DetailMovie from "./pages/DetailMovie";
-import axios from "axios";
+import React from "react";
 
-import Favorite from "./pages/Favorite";
-import Class from "./pages/Class";
-import App from "./pages";
+import axios from "axios";
+import App from "./routes";
 import "./styles/index.css";
+import DetailMovie from "./pages/DetailMovie";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/movie/";
 

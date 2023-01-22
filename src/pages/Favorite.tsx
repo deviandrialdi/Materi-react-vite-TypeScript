@@ -37,7 +37,7 @@ export default class index extends Component<PropsType, StateType> {
     let dupeDatas: MovieType[] = this.state.datas.slice();
     const filterData = dupeDatas.filter((item) => item.id !== data.id);
     localStorage.setItem("FavMovie", JSON.stringify(filterData));
-    alert(`Delete ${data.title} from favorite list`);
+    alert(`Movie ${data.title} delete from favorite list`);
   }
 
   render() {

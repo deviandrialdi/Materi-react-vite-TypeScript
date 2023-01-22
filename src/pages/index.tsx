@@ -38,7 +38,7 @@ export default class index extends Component<PropsType, StateType> {
         .get(
           `now_playing?api_key=${
             import.meta.env.VITE_API_KEY
-          }&language=en-US&page=1${page}`
+          }&language=en-US&page=${page}`
         )
         .then((data) => {
           const { results, total_pages } = data.data;
@@ -48,7 +48,7 @@ export default class index extends Component<PropsType, StateType> {
           alert(error.tostring());
         })
         .finally(() => this.setState({ loading: false }));
-    }, 1000);
+    }, 6000);
   }
 
   nextpage() {
@@ -69,7 +69,7 @@ export default class index extends Component<PropsType, StateType> {
       let parsefav: MovieType[] = JSON.parse(checkExist);
       parsefav.push(data);
       localStorage.setItem("FavMovie", JSON.stringify(parsefav));
-      alert("Movie added to favorite");
+      alert("Movie Succes add to favorite");
     } else {
       localStorage.setItem("FavMovie", JSON.stringify([data]));
       alert("Succes added Movie to Favorite");
@@ -99,7 +99,7 @@ export default class index extends Component<PropsType, StateType> {
             )}
           />
         )}
-        <div className="grid grid-cols-4 gap-3 p-3">
+        <div className="grid grid-cols-4 justify-center gap-3 p-3">
           {this.state.loading
             ? [...Array(20).keys()].map((data) => (
                 <LoadingAnimation key={data} />

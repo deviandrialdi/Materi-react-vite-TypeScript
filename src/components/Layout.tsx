@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import NavbarLogin from "./NavbarLogin";
 import Footer from "./Footer";
+import ScrollToTop from "./ScrollToTp";
 
 interface LayoutProps {
   children: React.ReactNode;
+  onScoll?: (e: React.ReactNode) => void;
+  setRef?: React.Ref<HTMLDivElement>;
 }
 
 export default class Layout extends Component<LayoutProps> {

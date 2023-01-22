@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import { NavigationType } from "react-router-dom";
+import { Component } from "react";
 
 import Button from "./Button";
+import { withRouter } from "../utils/navigation";
 
 interface DetailCardProps {
   title: string;
@@ -8,11 +10,14 @@ interface DetailCardProps {
   id: number;
   labelButton: string;
   onClickFav?: () => void;
+  navigate?: any;
+  params?: any;
 }
 
-export default class DetailCard extends Component<DetailCardProps> {
+class DetailCard extends Component<DetailCardProps> {
   onClikDetail() {
-    alert(`Movie ${this.props.id} selected`);
+    // alert(`Movie ${this.props.id} selected`);
+    this.props.navigate(`/movie/${this.props.id}`);
   }
 
   render() {
@@ -43,3 +48,5 @@ export default class DetailCard extends Component<DetailCardProps> {
     );
   }
 }
+
+export default withRouter(DetailCard);
