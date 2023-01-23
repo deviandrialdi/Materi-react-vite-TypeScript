@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 
 import Layout from "../components/Layout";
 import DetailCard from "../components/DetailCard";
@@ -12,54 +12,47 @@ interface StateType {
   datas: MovieType[];
 }
 
-export default class index extends Component<PropsType, StateType> {
-  constructor(props: PropsType) {
-    super(props);
-    this.state = {
-      datas: [],
-      loading: true,
-    };
-  }
+const Favorite = () => {
+  const [datas, setDatas] = useState<MovieType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  componentDidMount() {
-    this.fetchData();
-  }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  fetchData() {
+  function fetchData() {
     const getFavorite = localStorage.getItem("FavMovie");
     if (getFavorite) {
-      this.setState({ datas: JSON.parse(getFavorite) });
+      setDatas(JSON.parse(getFavorite));
     }
-    this.setState({ loading: false });
+    setLoading(false);
   }
 
-  removeFavorite(data: MovieType) {
-    let dupeDatas: MovieType[] = this.state.datas.slice();
+  function removeFavorite(data: MovieType) {
+    let dupeDatas: MovieType[] = datas.slice();
     const filterData = dupeDatas.filter((item) => item.id !== data.id);
     localStorage.setItem("FavMovie", JSON.stringify(filterData));
     alert(`Movie ${data.title} delete from favorite list`);
   }
 
-  render() {
-    return (
-      <Layout>
-        <div className="grid grid-cols-4 gap-3 p-3">
-          {this.state.loading
-            ? [...Array(20).keys()].map((data) => (
-                <LoadingAnimation key={data} />
-              ))
-            : this.state.datas.map((data) => (
-                <DetailCard
-                  key={data.id}
-                  title={data.title}
-                  image={data.poster_path}
-                  id={data.id}
-                  labelButton="Remove From Favorite"
-                  onClickFav={() => this.removeFavorite(data)}
-                />
-              ))}
-        </div>
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout>
+      <div className="grid grid-cols-4 gap-3 p-3">
+        {loading
+          ? [...Array(20).keys()].map((data) => <LoadingAnimation key={data} />)
+          : datas.map((data) => (
+              <DetailCard
+                key={data.id}
+                title={data.title}
+                image={data.poster_path}
+                id={data.id}
+                labelButton="Remove From Favorite"
+                onClickFav={() => removeFavorite(data)}
+              />
+            ))}
+      </div>
+    </Layout>
+  );
+};
+
+export default Favorite;
