@@ -4,6 +4,7 @@ import { Component, ReactNode } from "react";
 import Homepage from "../pages";
 import DetailMovie from "../pages/DetailMovie";
 import Favorite from "../pages/Favorite";
+import Sandbox from "../pages/Sandbox";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/movie/:id_movie",
     element: <DetailMovie />,
+  },
+  {
+    path: "/sandbox",
+    element: <Sandbox />,
   },
 ]);
 

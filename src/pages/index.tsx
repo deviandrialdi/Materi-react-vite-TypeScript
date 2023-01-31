@@ -7,15 +7,20 @@ import { LoadingAnimation } from "../components/Loading";
 import Carousel from "../components/Carousel";
 import { MovieType } from "../utils/types/movie";
 
+import { useTitle } from "../utils/hooks/customHooks"; // ini custom Hooks yang dibuat
+
 const Index = () => {
+  useTitle("Cinephile - Now Playing Movie"); // langkah kedua ketika sudah buat custom Hooks
   const [datas, setDatas] = useState<MovieType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
+  // ini adalah HOOK 1 tentang useState
 
   useEffect(() => {
     fetchData(1);
   }, []);
+  // ini adalah hook 2 tentang useEffect
 
   function fetchData(page: number) {
     setTimeout(() => {

@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import moment from "moment";
 
-import Layout from "../components/Layout";
 import { LoadingAnimation } from "../components/Loading";
-import { withRouter } from "../utils/navigation";
 import { MovieType } from "../utils/types/movie";
+import { useTitle } from "../utils/hooks/customHooks";
+
+import Layout from "../components/Layout";
 
 const formatUSD = (money: any) => {
   return new Intl.NumberFormat("en-US", {
@@ -16,16 +17,19 @@ const formatUSD = (money: any) => {
 };
 
 const DetailMovie = () => {
-  const params = useParams();
+  const { id_movie } = useParams();
+  // const params = useParams();
   const [data, setData] = useState<MovieType>({});
+  // const [videos, setVideos] = useState<VideosType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  useTitle(`${data.title} - Cinephile`);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   function fetchData() {
-    const { id_movie } = params;
+    // const { id_movie } = params;
     setTimeout(() => {
       fetch(
         `https://api.themoviedb.org/3/movie/${id_movie}?api_key=${
@@ -37,6 +41,7 @@ const DetailMovie = () => {
 
         .then((data) => {
           setData(data);
+          // setVideos(data.videos?.results);
         })
         .catch((error) => {
           alert(error.tostring());
@@ -55,7 +60,7 @@ const DetailMovie = () => {
             src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
             alt={data.title}
           />
-          <div className="p-5">
+          <div className="p-5 w-full h-full">
             <p className="text-center">
               <h1 className="text-white text-2xl font-bold text-center">
                 {" "}

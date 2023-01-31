@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import DetailCard from "../components/DetailCard";
 import { LoadingAnimation } from "../components/Loading";
 import { MovieType } from "../utils/types/movie";
+import { useTitle } from "../utils/hooks/customHooks";
 
 interface PropsType {}
 
@@ -13,6 +14,7 @@ interface StateType {
 }
 
 const Favorite = () => {
+  useTitle("Cinephile - Your Favorite Movie");
   const [datas, setDatas] = useState<MovieType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import App from "./routes";
 import "./styles/index.css";
 import DetailMovie from "./pages/DetailMovie";
+import Sandbox from "./pages/Sandbox";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/movie/";
 

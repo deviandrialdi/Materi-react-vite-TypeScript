@@ -12,22 +12,28 @@ export default class Navbar extends Component {
         <div className="flex-1 p-2 gap-3">
           <Link
             to="/"
-            className="btn btn-ghost normal-case text-2xl text-white border-white 2rem gap-3"
+            className="btn btn-ghost normal-case text-lg text-white border-white 2rem gap-3"
           >
             <a>MY MOVIE</a>
           </Link>
+          <Link
+            to="/favorites"
+            className="btn btn-ghost normal-case text-lg text-white border-white 2rem gap-3"
+          >
+            <a>FAVORITE</a>
+          </Link>
+
+          <Link
+            to="/sandbox"
+            className="btn btn-ghost normal-case text-lg text-white border-white 2rem gap-3"
+          >
+            <a>Sandbox</a>
+          </Link>
+
           <div className="flex flex-1 items-center  justify-around">
-            <div className="form-control w-full max-w-xs border-whi">
+            <div className="form-control w-full max-w-xs">
               <input type="text" placeholder="Search..." className="input" />
             </div>
-          </div>
-
-          <div className="justify-between">
-            <label tabIndex={0} className="justify-between:flex-end">
-              <a className="btn btn-ghost normal-case text-2xl text-white border-white">
-                Devi Andri
-              </a>
-            </label>
           </div>
 
           <div className="flex items-center justify-end">
