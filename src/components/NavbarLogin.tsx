@@ -14,7 +14,7 @@ const Navbar = () => {
   } // buat function agar ke trigger
 
   return (
-    <div className="navbar bg-base-100 dark:bg-gray-700 justify-between">
+    <div className="navbar bg-blue-900 dark:bg-gray-700 justify-between">
       <div className="flex">
         <Link
           to="/"

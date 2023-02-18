@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux"; // berfungsi sebagai Jika sudah ditambhakan ke add to favorite maka langsung secara otomatis bertmabh dan masuk ke page favorite tanpa harus direfresh
 import axios from "axios";
 
 import Layout from "../components/Layout";
 import DetailCard from "../components/DetailCard";
 import { LoadingAnimation } from "../components/Loading";
 import Carousel from "../components/Carousel";
+
+import { setFavorites } from "../utils/redux/reducers/reducer"; // ini adalah updaternya
+import { useTitle } from "../utils/hooks/customHooks"; // ini custom Hooks yang dibuat
 import { MovieType } from "../utils/types/movie";
 
-import { useTitle } from "../utils/hooks/customHooks"; // ini custom Hooks yang dibuat
-
 const Index = () => {
+  const dispatch = useDispatch(); // berfungsi sebagai Jika sudah ditambhakan ke add to favorite maka langsung secara otomatis bertmabh dan masuk ke page favorite tanpa harus direfresh
   useTitle("Cinephile - Now Playing Movie"); // langkah kedua ketika sudah buat custom Hooks
   const [datas, setDatas] = useState<MovieType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -61,6 +64,7 @@ const Index = () => {
       parsefav.push(data);
       localStorage.setItem("FavMovie", JSON.stringify(parsefav));
       alert("Movie Succes add to favorite");
+      dispatch(setFavorites(parsefav)); // berfungsi sebagai Jika sudah ditambhakan ke add to favorite maka langsung secara otomatis bertmabah dan masuk ke page favorite tanpa harus direfresh
     } else {
       localStorage.setItem("FavMovie", JSON.stringify([data]));
       alert("Succes added Movie to Favorite");
