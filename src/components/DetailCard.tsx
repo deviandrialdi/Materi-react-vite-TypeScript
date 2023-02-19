@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { FC } from "react";
 
 import Button from "./Button";
-import { withRouter } from "../utils/navigation";
+import { withRouter } from "utils/navigation";
 
 interface DetailCardProps {
   title?: string;

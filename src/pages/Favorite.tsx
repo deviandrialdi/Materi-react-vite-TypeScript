@@ -4,14 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 // useSelector digunakan untuk mengambil data
 // useDispatch merubah data
 
-import Layout from "../components/Layout";
-import DetailCard from "../components/DetailCard";
+import Layout from "components/Layout";
+import DetailCard from "components/DetailCard";
 
-import { setFavorites } from "../utils/redux/reducers/reducer";
-import { LoadingAnimation } from "../components/Loading";
-import { useTitle } from "../utils/hooks/customHooks";
-import { MovieType } from "../utils/types/movie";
-import { RootState } from "../utils/types/redux";
+import { setFavorites } from "utils/redux/reducers/reducer";
+import { LoadingAnimation } from "components/Loading";
+import { useTitle } from "utils/hooks/customHooks";
+import { MovieType } from "utils/types/movie";
+import { RootState } from "utils/types/redux";
 
 const Favorite = () => {
   const dispatch = useDispatch(); // ini buat ketika data dihapus pada form favorite, maka akan langsung refresh tanpa harus di paksa refresh

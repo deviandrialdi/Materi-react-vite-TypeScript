@@ -1,7 +1,6 @@
-import React, { Component } from "react";
 import Lottie from "lottie-react";
 
-import Animation from "../assets/please-wait.json";
+import Animation from "assets/please-wait.json";
 
 export const IndicatorsLoading = () => {
   return (

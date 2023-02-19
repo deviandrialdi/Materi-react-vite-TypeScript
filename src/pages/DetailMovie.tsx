@@ -1,12 +1,16 @@
+// ini adalah library
+
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import moment from "moment";
 
-import { LoadingAnimation } from "../components/Loading";
-import { MovieType } from "../utils/types/movie";
-import { useTitle } from "../utils/hooks/customHooks";
+// ini adalah component
+import { LoadingAnimation } from "components/Loading";
+import Layout from "components/Layout";
 
-import Layout from "../components/Layout";
+// ini adalah typeData atau fungsi
+import { MovieType } from "utils/types/movie";
+import { useTitle } from "utils/hooks/customHooks";
 
 const formatUSD = (money: any) => {
   return new Intl.NumberFormat("en-US", {

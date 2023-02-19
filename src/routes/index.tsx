@@ -2,13 +2,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useMemo, useEffect } from "react"; // ini adalah langkah
 import { useDispatch } from "react-redux";
 
-import Homepage from "../pages";
-import DetailMovie from "../pages/DetailMovie";
-import Favorite from "../pages/Favorite";
-import Sandbox from "../pages/Sandbox";
+import Homepage from "pages";
+import DetailMovie from "pages/DetailMovie";
+import Favorite from "pages/Favorite";
+import Sandbox from "pages/Sandbox";
 
-import { ThemeContext } from "../utils/context"; // ini langkah kedua dari context
-import { setFavorites } from "../utils/redux/reducers/reducer"; // ini adalah updaternya
+import { ThemeContext } from "utils/context"; // ini langkah kedua dari context
+import { setFavorites } from "utils/redux/reducers/reducer"; // ini adalah updaternya
 
 const router = createBrowserRouter([
   {

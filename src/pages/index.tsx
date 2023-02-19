@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"; // berfungsi sebagai Jika sudah ditambhakan ke add to favorite maka langsung secara otomatis bertmabh dan masuk ke page favorite tanpa harus direfresh
 import axios from "axios";
 
-import Layout from "../components/Layout";
-import DetailCard from "../components/DetailCard";
-import { LoadingAnimation } from "../components/Loading";
-import Carousel from "../components/Carousel";
+import Layout from "components/Layout";
+import DetailCard from "components/DetailCard";
+import { LoadingAnimation } from "components/Loading";
+import Carousel from "components/Carousel";
 
-import { setFavorites } from "../utils/redux/reducers/reducer"; // ini adalah updaternya
-import { useTitle } from "../utils/hooks/customHooks"; // ini custom Hooks yang dibuat
-import { MovieType } from "../utils/types/movie";
+import { setFavorites } from "utils/redux/reducers/reducer"; // ini adalah updaternya
+import { useTitle } from "utils/hooks/customHooks"; // ini custom Hooks yang dibuat
+import { MovieType } from "utils/types/movie";
 
 const Index = () => {
   const dispatch = useDispatch(); // berfungsi sebagai Jika sudah ditambhakan ke add to favorite maka langsung secara otomatis bertmabh dan masuk ke page favorite tanpa harus direfresh
