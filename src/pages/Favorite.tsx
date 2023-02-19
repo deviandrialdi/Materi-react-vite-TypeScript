@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // useSelector digunakan untuk mengambil data
@@ -8,7 +7,6 @@ import Layout from "components/Layout";
 import DetailCard from "components/DetailCard";
 
 import { setFavorites } from "utils/redux/reducers/reducer";
-import { LoadingAnimation } from "components/Loading";
 import { useTitle } from "utils/hooks/customHooks";
 import { MovieType } from "utils/types/movie";
 import { RootState } from "utils/types/redux";

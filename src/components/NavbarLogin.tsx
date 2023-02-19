@@ -28,6 +28,12 @@ const Navbar = () => {
         >
           Favorite
         </Link>
+        <Link
+          to="/sandbox"
+          className="btn btn-ghost normal-case text-xl text-black dark:text-white"
+        >
+          Sandbox
+        </Link>
       </div>
 
       <div className="flex-none items-center justify-center gap-2">

@@ -11,6 +11,8 @@ import { setFavorites } from "utils/redux/reducers/reducer"; // ini adalah updat
 import { useTitle } from "utils/hooks/customHooks"; // ini custom Hooks yang dibuat
 import { MovieType } from "utils/types/movie";
 
+import ScrollToTop from "components/ScrollToTp";
+
 const Index = () => {
   const dispatch = useDispatch(); // berfungsi sebagai Jika sudah ditambhakan ke add to favorite maka langsung secara otomatis bertmabh dan masuk ke page favorite tanpa harus direfresh
   useTitle("Cinephile - Now Playing Movie"); // langkah kedua ketika sudah buat custom Hooks
@@ -89,6 +91,7 @@ const Index = () => {
               <p className="text-white italic tracking-widest font-bold break-words text-2xl text-center">
                 {data.title}
               </p>
+              <ScrollToTop />
             </div>
           )}
         />

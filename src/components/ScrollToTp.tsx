@@ -19,7 +19,7 @@ const ScrollToTop = () => {
         setShowTopBtn(false);
       }
     });
-  }, []);
+  }, [window]);
 
   return (
     <div className="top-to-btm">
